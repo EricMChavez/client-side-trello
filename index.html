@@ -3,22 +3,31 @@
 <head>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:800|Quicksand:700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     
 </head>
 <body>
-    <header></header>
+    <header><div id="trash" onclick="restore()"></div></header>
     <div id="workspace">
-        <div draggable="true" class="swimlane">
-                <div class="card" draggable="true">1</div>
-                <div class="card" draggable="true">2</div>
-                <div class="card" draggable="true">3</div>
+        <div id="laneMaker">
+            <input id="newLaneTitle" onfocusout="hideLaneMaker()" type="text">
+            <button onclick="laneFactory()">New Lane</button>
         </div>
-        <div  draggable="true" class="swimlane">
-            <div class="card" draggable="true">4</div>
-            
-        </div>
-        <div  draggable="true" class="swimlane"></div>
-    </div> <script src="index.js"></script>
+        <div id="laneBtn" onclick="laneMaker()" class="swimlane laneBtn">+ Add Lane</div>
+    </div>
+    <div id="cardMaker" class="card cardMaker">
+        <input id="newCardTitle" onfocusout="hideCardMaker()" type="text">
+        <button onclick="cardFactory()">New Card</button>
+    </div>
+    <div id="greyOut" onclick="endEdit()"></div>
+    <div id="cardEditer">
+        <div id="cardEditerTitle">Title</div>
+        <input id="inputTitle" type="text">
+        <div id="cardEditerBody">Body</div>
+        <textarea id="inputBody" cols="30" rows="10"></textarea>
+        <button onclick="updateCard()">Update Card</button>
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>

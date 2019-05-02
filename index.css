@@ -1,4 +1,5 @@
 :root {
+	font-family: 'Quicksand', sans-serif;
 }
 body {
 	background-image: url('background.jpg');
@@ -19,29 +20,146 @@ header {
 	background-image: linear-gradient(to right, rgba(0, 0, 0, .3), rgba(100, 0, 0, .3));
 }
 .swimlane {
-	width: 275px;
+	width: 255px;
 	padding: 10px;
-	background-color: rgba(0, 0, 0, .3);
-	margin: 1px;
+	border-right: solid 1px rgba(0, 0, 0, .3);
+	overflow: scroll;
 }
 .space {
-	border-radius: 5px;
 	background-color: rgba(0, 0, 120, .3);
 }
 .largespace {
-	width: 275px;
-	margin-right: 5px;
+	width: 277px;
 	height: 100%;
 }
 .smallspace {
-	height: 100px;
 	margin-bottom: 10px;
 }
 .card {
-	height: 100px;
+	font-family: 'Nanum Gothic', sans-serif;
+	min-height: 35px;
 	width: 100%;
 	background-color: white;
 	border-radius: 5px;
 	margin-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.card:hover {
+	background-color: lightblue;
+}
+.cardBtn {
+	background-color: grey;
+	padding: 5px 10px;
+	height: 35px;
+	width: calc(100% - 20px);
+	display: flex;
+	align-items: center;
+	border-radius: 5px;
+}
+.dropzone {
+	padding: 0;
+	background-color: transparent;
+}
+.dropzone:hover {
+	background-color: transparent;
+}
+.laneTitle {
+	text-align: center;
+	font-size: 28px;
+	margin: 5px;
+	text-transform: uppercase;
+}
+.laneTitle:focus {
+	outline: none;
+}
+.cardMaker {
+	height: 40px;
+	background-color: lightgray;
+	display: none;
+	align-items: center;
+	justify-content: center;
+}
+.cardMaker:hover {
+	background-color: lightgray;
+}
+.laneBtn {
+	height: 40px;
+	background-color: lightgray;
+	display: flex;
+	border-radius: 5px;
+	align-items: center;
+	margin: 45px 0 0 10px;
+}
+#laneMaker {
+	display: none;
+	height: 40px;
+	background-color: lightgray;
+	width: 255px;
+	border-radius: 5px;
+	align-items: center;
+	justify-content: center;
+	margin: 45px 0 0 10px;
+}
+#trash {
+	width: 50px;
+	height: 50px;
 	font-size: 30px;
+	float: right;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: .7;
+	background-color: white;
+}
+#trash::after {
+	font-family: 'Font Awesome 5 Free';
+	content: ' \f2ed';
+	font-weight: 700;
+}
+#trash:hover {
+	background-color: black;
+}
+#trash:hover::after {
+	content: ' \f0e2';
+	color: white;
+}
+.cardTitle {
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 18px;
+	font-family: 'Nanum Gothic', sans-serif;
+	position: relative;
+	padding-bottom: 10px;
+}
+.cardTitle:hover::after {
+	font-family: 'Font Awesome 5 Free';
+	position: absolute;
+	right: 5px;
+	content: ' \f303';
+	font-weight: 700;
+	color: black;
+	z-index: 1;
+}
+.cardBody {
+	margin: 0 15px 15px 15px;
+}
+#cardEditer {
+	height: 500px;
+	width: 700px;
+	background-color: lightgray;
+	padding: 30px;
+	border-radius: 15px;
+	position: absolute;
+	top: calc(50vh - 250px);
+	left: calc(50vw - 350px);
+	display: none;
+}
+#greyOut {
+	position: absolute;
+	top: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(0, 0, 0, .5);
+	display: none;
 }
