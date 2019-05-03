@@ -5,6 +5,25 @@ var dragPosition = '';
 var dragCardHeight;
 var editedCard;
 let trashcan = [];
+let counter;
+let backgrounds = [
+	'url("background0.jpg")',
+	'url("background1.jpg")',
+	'url("background2.jpg")',
+	'url("background3.jpg")',
+	'url("background4.jpg")',
+	'url("background5.jpg")',
+	'url("background6.jpg")',
+	'url("background7.jpg")',
+	'url("background8.jpg")',
+	'url("background9.jpg")',
+	'url("background10.jpg")',
+	'url("background11.jpg")',
+	'url("background12.jpg")',
+	'black',
+	'lightblue',
+	'red'
+];
 let trash = document.getElementById('trash');
 trash.addEventListener('dragover', hover);
 trash.addEventListener('dragenter', nothing);
@@ -67,10 +86,12 @@ function tagLanes() {
 function dragStartCard(e) {
 	dragCard = this;
 	dragCardHeight = window.getComputedStyle(dragCard, null).getPropertyValue('height');
+	document.body.style.cursor = 'grabbing';
 	e.stopPropagation();
 }
 function dragStartLane() {
 	dragLane = this;
+	document.body.style.cursor = 'grabbing';
 }
 function dragEnterCard(e) {
 	e.preventDefault();
@@ -171,6 +192,7 @@ function dragEnd() {
 	}
 	dragCard = '';
 	dragLane = '';
+	document.body.style.cursor = 'default';
 }
 function dragLeave() {}
 
@@ -196,6 +218,12 @@ function endEdit() {
 function updateCard() {
 	editedCard.childNodes[0].innerHTML = document.getElementById('inputTitle').value;
 	editedCard.childNodes[1].innerHTML = document.getElementById('inputBody').value;
+	if (document.getElementById('inputBody').value != '') {
+		editedCard.childNodes[1].style.display = 'block';
+	} else {
+		editedCard.childNodes[1].style.display = 'none';
+	}
+
 	endEdit();
 	setDropzone();
 }
@@ -268,5 +296,60 @@ function setDropzone() {
 	let zones = document.getElementsByClassName('dropzone');
 	for (let zone of zones) {
 		zone.style.height = window.innerHeight - zone.offsetTop - 30 + 'px';
+	}
+}
+function changeBackground() {
+	counter = backgrounds.indexOf(document.getElementById('bgImage').style.backgroundImage) + 1;
+	if (counter > 12) {
+		counter = 0;
+	}
+	document.getElementById('bgImage').style.backgroundImage = backgrounds[counter];
+}
+function fullscreen() {
+	if (screen.height == window.innerHeight) {
+		document.exitFullscreen();
+		setDropzone();
+	} else {
+		document.body.requestFullscreen();
+		setDropzone();
+	}
+}
+
+document.addEventListener('keydown', function(e) {
+	if (e.key == 'Enter') {
+		e.preventDefault();
+		if (document.getElementById('newLaneTitle') == document.activeElement) {
+			laneFactory();
+		}
+		if (document.getElementById('newCardTitle') == document.activeElement) {
+			cardFactory();
+		}
+		if (
+			document.getElementById('inputTitle') == document.activeElement ||
+			document.getElementById('inputBody') == document.activeElement
+		) {
+			updateCard();
+		} else {
+			let items = document.querySelectorAll('.color');
+			for (let item of items) {
+				if (item == document.activeElement) {
+					updateCard();
+				}
+			}
+		}
+	}
+});
+function changeColor(color) {
+	editedCard.childNodes[0].style.color = 'white';
+	if (color == 'none') {
+		editedCard.childNodes[0].style.backgroundColor = 'rgb(68, 68, 68)';
+		editedCard.style.borderColor = 'rgb(68, 68, 68)';
+	} else if (color == '#FDE74C' || color == '#5BC0EB') {
+		editedCard.childNodes[0].style.color = 'black';
+		editedCard.childNodes[0].style.backgroundColor = color;
+		editedCard.style.borderColor = color;
+	} else {
+		editedCard.childNodes[0].style.backgroundColor = color;
+		editedCard.style.borderColor = color;
 	}
 }
