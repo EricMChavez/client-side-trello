@@ -19,10 +19,7 @@ let backgrounds = [
 	'url("background9.jpg")',
 	'url("background10.jpg")',
 	'url("background11.jpg")',
-	'url("background12.jpg")',
-	'black',
-	'lightblue',
-	'red'
+	'url("background12.jpg")'
 ];
 let trash = document.getElementById('trash');
 trash.addEventListener('dragover', hover);
@@ -209,6 +206,7 @@ function editCard(card) {
 	document.getElementById('cardEditer').style.display = 'block';
 	document.getElementById('inputTitle').value = card.childNodes[0].innerHTML;
 	document.getElementById('inputBody').value = card.childNodes[1].innerHTML;
+	document.getElementById('inputBody').focus();
 	editedCard = card;
 }
 function endEdit() {
@@ -317,25 +315,13 @@ function fullscreen() {
 
 document.addEventListener('keydown', function(e) {
 	if (e.key == 'Enter') {
-		e.preventDefault();
 		if (document.getElementById('newLaneTitle') == document.activeElement) {
+			e.preventDefault();
 			laneFactory();
 		}
 		if (document.getElementById('newCardTitle') == document.activeElement) {
+			e.preventDefault();
 			cardFactory();
-		}
-		if (
-			document.getElementById('inputTitle') == document.activeElement ||
-			document.getElementById('inputBody') == document.activeElement
-		) {
-			updateCard();
-		} else {
-			let items = document.querySelectorAll('.color');
-			for (let item of items) {
-				if (item == document.activeElement) {
-					updateCard();
-				}
-			}
 		}
 	}
 });
