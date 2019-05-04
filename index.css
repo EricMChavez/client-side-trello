@@ -4,9 +4,10 @@
 #bgImage {
 	background-image: url('background12.jpg');
 	background-size: cover;
+	transition: 1000ms;
 }
-body::backdrop {
-	background-color: none;
+body {
+	background-color: black;
 }
 header {
 	background-color: rgba(97, 97, 97, 0.2);

@@ -200,8 +200,7 @@ function clearSpaces() {
 		space.parentNode.removeChild(space);
 	}
 }
-tagCards();
-tagLanes();
+
 function editCard(card) {
 	document.getElementById('greyOut').style.display = 'block';
 	document.getElementById('cardEditer').style.display = 'block';
@@ -222,7 +221,6 @@ function updateCard() {
 	} else {
 		editedCard.childNodes[1].style.display = 'none';
 	}
-
 	endEdit();
 	setDropzone();
 }
@@ -340,3 +338,5 @@ function changeColor(color) {
 		editedCard.style.borderColor = color;
 	}
 }
+tagCards();
+tagLanes();
