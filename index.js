@@ -152,8 +152,8 @@ function dragOver(e) {
 		}
 	}
 	if (dragLane != '' && this.className == 'swimlane') {
-		let laneMid = this.offsetLeft;
-		if (e.pageX > laneMid && dragPosition == 'left') {
+		let scroll = document.getElementById('workspace').scrollLeft;
+		if (e.clientX > this.offsetLeft - scroll && dragPosition == 'left') {
 			dragPosition = 'down';
 			clearSpaces();
 			let space = document.createElement('div');
@@ -167,6 +167,7 @@ function dragOver(e) {
 		}
 	}
 }
+
 function dragEnd() {
 	if (dragLane != '') {
 		dragLane.style.display = 'block';
