@@ -110,6 +110,7 @@ function dropCard() {
 		this.parentNode.insertBefore(dragCard, this);
 		dragCard = '';
 		clearSpaces();
+		setDropzone();
 	}
 }
 

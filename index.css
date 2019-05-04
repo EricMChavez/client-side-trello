@@ -1,14 +1,15 @@
 :root {
 	font-family: 'Quicksand', sans-serif;
 }
+body {
+	background-color: black;
+}
 #bgImage {
 	background-image: url('background12.jpg');
 	background-size: cover;
 	transition: 1000ms;
 }
-body {
-	background-color: black;
-}
+
 header {
 	background-color: rgba(97, 97, 97, 0.2);
 	width: 100vw;
@@ -37,15 +38,6 @@ i {
 	flex-wrap: nowrap;
 	overflow-x: auto;
 }
-.swimlane {
-	width: 255px;
-	padding: 10px;
-	border-right: solid 1px rgba(255, 255, 255, 0.3);
-	overflow: scroll;
-	flex: 0 0 auto;
-	flex-direction: column;
-	align-items: center;
-}
 .space {
 	background-color: rgba(255, 255, 255, 0.5);
 }
@@ -60,6 +52,16 @@ i {
 	padding: 4px;
 	width: calc(100% - 6px);
 }
+.swimlane {
+	width: 255px;
+	padding: 10px;
+	border-right: solid 1px rgba(255, 255, 255, 0.3);
+	overflow: scroll;
+	flex: 0 0 auto;
+	flex-direction: column;
+	align-items: center;
+}
+
 .card {
 	font-family: 'Nanum Gothic', sans-serif;
 	width: calc(100% - 6px);
