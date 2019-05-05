@@ -81,6 +81,7 @@ i {
 	border-radius: 5px;
 	color: white;
 	font-size: 14px;
+	cursor: pointer;
 }
 .cardBtn:hover {
 	background-color: rgb(68, 68, 68);
