@@ -106,8 +106,13 @@ function dragEnterCard(e) {
 }
 function dropCard() {
 	if (dragCard != '') {
-		dragCard.style.display = 'block';
-		this.parentNode.insertBefore(dragCard, this);
+		let cardMid = findMid(e.path);
+		if (e.pageY > cardMid) {
+			this.insertAdjacentElement('afterend', dragCard);
+		} else {
+			dragCard.style.display = 'block';
+			this.parentNode.insertBefore(dragCard, this);
+		}
 		dragCard = '';
 		clearSpaces();
 		setDropzone();
@@ -137,8 +142,8 @@ function dropLane() {
 function dragOver(e) {
 	e.preventDefault();
 	if (dragCard != '' && this.className == 'card') {
-		let cardMid = this.clientHeight / 2 + this.offsetTop;
-		if (e.pageY < cardMid && dragPosition == 'up') {
+		let cardMid = findMid(e.path);
+		if (e.pageY > cardMid && dragPosition == 'up') {
 			dragPosition = 'down';
 			clearSpaces();
 			let space = document.createElement('div');
@@ -168,7 +173,13 @@ function dragOver(e) {
 		}
 	}
 }
-
+function findMid(path) {
+	for (let item of path) {
+		if (item.classList == 'card') {
+			return item.clientHeight / 2 + item.offsetTop;
+		}
+	}
+}
 function dragEnd() {
 	if (dragLane != '') {
 		dragLane.style.display = 'block';
@@ -227,6 +238,9 @@ function updateCard() {
 }
 function cardFactory() {
 	let title = document.getElementById('newCardTitle').value;
+	if (title == '') {
+		title = 'untitled';
+	}
 	let newCard = document.createElement('div');
 	newCard.classList = 'card';
 	newCard.draggable = 'true';
@@ -272,6 +286,9 @@ function hideLaneMaker() {
 }
 function laneFactory() {
 	let title = document.getElementById('newLaneTitle').value;
+	if (title == '') {
+		title = 'untitled';
+	}
 	let newLane = document.createElement('div');
 	newLane.classList = 'swimlane';
 	newLane.draggable = 'true';
