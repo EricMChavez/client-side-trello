@@ -6,6 +6,7 @@ var dragCardHeight;
 var editedCard;
 let trashcan = [];
 let counter;
+let animation = false;
 let backgrounds = [
 	'url("background0.jpg")',
 	'url("background1.jpg")',
@@ -314,11 +315,17 @@ function setDropzone() {
 	}
 }
 function changeBackground() {
-	counter = backgrounds.indexOf(document.getElementById('bgImage').style.backgroundImage) + 1;
-	if (counter > 12) {
-		counter = 0;
+	if (animation == false) {
+		counter = backgrounds.indexOf(document.getElementById('bgImage').style.backgroundImage) + 1;
+		animation = true;
+		if (counter > 12) {
+			counter = 0;
+		}
+		document.getElementById('bgImage').style.backgroundImage = backgrounds[counter];
+		setTimeout(() => {
+			animation = false;
+		}, 1000);
 	}
-	document.getElementById('bgImage').style.backgroundImage = backgrounds[counter];
 }
 function fullscreen() {
 	if (screen.height == window.innerHeight) {
