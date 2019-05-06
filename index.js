@@ -324,13 +324,15 @@ function changeBackground() {
 		document.getElementById('bgImage').style.backgroundImage = backgrounds[counter];
 		setTimeout(() => {
 			animation = false;
-		}, 1000);
+		}, 500);
 	}
 }
 function fullscreen() {
 	if (screen.height == window.innerHeight) {
 		document.exitFullscreen();
-		setDropzone();
+		setTimeout(() => {
+			setDropzone();
+		}, 1000);
 	} else {
 		document.body.requestFullscreen();
 		setDropzone();
@@ -365,3 +367,13 @@ function changeColor(color) {
 }
 tagCards();
 tagLanes();
+window.onload = function() {
+	document.querySelector('#bgImage').style.opacity = '1';
+	setTimeout(() => {
+		document.querySelector('header').style.opacity = '1';
+	}, 250);
+	setTimeout(() => {
+		document.querySelector('#workspace').style.opacity = '1';
+		document.querySelector('#workspace').style.left = '0';
+	}, 500);
+};

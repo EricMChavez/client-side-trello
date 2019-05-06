@@ -7,7 +7,8 @@ body {
 #bgImage {
 	background-image: url('background12.jpg');
 	background-size: cover;
-	transition: 1000ms;
+	opacity: 0;
+	transition: opacity 500ms, background-image 500ms;
 }
 
 header {
@@ -15,6 +16,8 @@ header {
 	width: 100vw;
 	height: 50px;
 	border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+	opacity: 0;
+	transition: opacity 500ms;
 }
 #logo {
 	position: fixed;
@@ -37,6 +40,10 @@ i {
 	display: flex;
 	flex-wrap: nowrap;
 	overflow-x: auto;
+	opacity: 0;
+	position: relative;
+	left: -500px;
+	transition: opacity 500ms, left 1000ms;
 }
 .space {
 	background-color: rgba(255, 255, 255, 0.5);
