@@ -30,10 +30,12 @@
         <div id="workspace">
             <div draggable="true" class="swimlane">
                 <div contenteditable="true" class="laneTitle">Wellcome</div>
-                <div draggable="true" class="card"><div  onclick='editCard(this.parentNode)' class="cardTitle">Boardwalk</div><div style="display: block" class="cardBody">Boardwalk is a Kanban board designed for a clean, minimal, distraction-free workspace for the modern developer. Enjoy!</div></div>
-                <div class="card dropzone">
-                    <div onclick="grabCardMaker(this)" class="cardBtn" style="display: flex">+ Add Card</div>
-                </div>
+                    <div draggable="true" class="card"><div  onclick='editCard(this.parentNode)' class="cardTitle">Boardwalk</div><div style="display: block" class="cardBody">Boardwalk is a Kanban board designed for a clean, minimal, distraction-free workspace for the modern developer. Enjoy!</div></div>
+                    
+                    <div class="card dropzone">
+                        <div onclick="grabCardMaker(this)" class="cardBtn" style="display: flex">+ Add Card</div>
+                    </div>
+                
             </div>
             <div id="laneMaker">
                 <input id="newLaneTitle" placeholder="Lane Title" onfocusout="hideLaneMaker()" type="text">
@@ -61,7 +63,6 @@
             </div>
             <button id="updateBtn" onclick="updateCard()">Update Card</button>
         </div>
-        <div id="line"></div>
         <script src="index.js"></script>
 </div>
 </body>

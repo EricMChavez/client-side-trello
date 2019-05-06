@@ -1,7 +1,7 @@
 'use strict';
 var dragCard = '';
 var dragLane = '';
-var dragPosition = '';
+var dragPosition = 'up';
 var dragCardHeight;
 var editedCard;
 let trashcan = [];
@@ -93,7 +93,7 @@ function dragStartLane() {
 }
 function dragEnterCard(e) {
 	e.preventDefault();
-	if (dragCard != '') {
+	if (dragCard != '' && e.path[0].classList[1] == 'dropzone') {
 		clearSpaces();
 		let space = document.createElement('div');
 		space.classList = 'space smallspace';
@@ -105,15 +105,15 @@ function dragEnterCard(e) {
 		dragCard.style.display = 'none';
 	}
 }
-function dropCard() {
+function dropCard(e) {
 	if (dragCard != '') {
 		let cardMid = findMid(e.path);
 		if (e.pageY > cardMid) {
 			this.insertAdjacentElement('afterend', dragCard);
 		} else {
-			dragCard.style.display = 'block';
 			this.parentNode.insertBefore(dragCard, this);
 		}
+		dragCard.style.display = 'block';
 		dragCard = '';
 		clearSpaces();
 		setDropzone();
@@ -150,14 +150,24 @@ function dragOver(e) {
 			let space = document.createElement('div');
 			space.classList = 'space smallspace';
 			space.style.height = dragCardHeight;
-
+			dragCard.style.display = 'none';
 			space.addEventListener('dragover', dragOver);
 			space.addEventListener('drop', dropCard);
 			this.insertAdjacentElement('afterend', space);
-		} else {
+		} else if (e.pageY < cardMid && dragPosition == 'down') {
+			clearSpaces();
+			let space = document.createElement('div');
+			space.classList = 'space smallspace';
+			space.style.height = dragCardHeight;
+
+			space.addEventListener('dragover', dragOver);
+			space.addEventListener('drop', dropCard);
+			this.insertAdjacentElement('beforebegin', space);
+			dragCard.style.display = 'none';
 			dragPosition = 'up';
 		}
 	}
+
 	if (dragLane != '' && this.className == 'swimlane') {
 		let scroll = document.getElementById('workspace').scrollLeft;
 		if (e.clientX > this.offsetLeft - scroll && dragPosition == 'left') {
@@ -174,6 +184,7 @@ function dragOver(e) {
 		}
 	}
 }
+
 function findMid(path) {
 	for (let item of path) {
 		if (item.classList == 'card') {
@@ -311,7 +322,7 @@ function restore() {
 function setDropzone() {
 	let zones = document.getElementsByClassName('dropzone');
 	for (let zone of zones) {
-		zone.style.height = window.innerHeight - zone.offsetTop - 30 + 'px';
+		zone.style.height = window.innerHeight - zone.offsetTop - 70 + 'px';
 	}
 }
 function changeBackground() {
@@ -374,6 +385,5 @@ window.onload = function() {
 	}, 250);
 	setTimeout(() => {
 		document.querySelector('#workspace').style.opacity = '1';
-		document.querySelector('#workspace').style.left = '0';
 	}, 500);
 };

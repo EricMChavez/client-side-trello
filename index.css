@@ -41,9 +41,7 @@ i {
 	flex-wrap: nowrap;
 	overflow-x: auto;
 	opacity: 0;
-	position: relative;
-	left: -500px;
-	transition: opacity 500ms, left 1000ms;
+	transition: opacity 500ms;
 }
 .space {
 	background-color: rgba(255, 255, 255, 0.5);
